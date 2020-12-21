@@ -9,6 +9,6 @@ Para testar siga os seguintes passos:
 
 1: git clone https://github.com/SLeoreis/Trabalho-Topicos2.git
 
-2: cd trabalho-topicos2-django/mercado
+2: cd Trabalho-Topicos2/mercado
 
 3: python3 manage.py runserver
