@@ -1,0 +1,15 @@
+{% extends "estoque/application.html" %} 
+{% block content %} 
+
+<div class="center-div">
+        <h2>Cadastro</h2>
+        <div class='form-wrapper'>
+            <form action="{%url 'registrar' %}" method="post">
+                {{ form }}
+                {% csrf_token %}
+                <input type="submit" value="Registrar-se" />
+            </form>
+        </div>
+        <a href="{%url 'login'%}"><li>Voltar para Login</li></a>
+    </div>
+{% endblock %}

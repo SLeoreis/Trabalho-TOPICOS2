@@ -1,0 +1,88 @@
+<! DOCTYPE html>
+<html lang="pt">
+	<head>
+		{% load staticfiles %}
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'estoque/css/bootstrap.min.css' %}" type = "text/css"/>
+		<link rel="stylesheet" href="{% static 'estoque/css/datatables.min.css' %}" type = "text/css"/>
+		<link rel="stylesheet" href="{% static 'estoque/css/main.css' %}" type = "text/css"/>
+		
+		<title>Estoque</title>
+	</head>
+
+	<body>
+		
+		<!-- START Bootstrap Navbar -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{%url 'home'%}"><span id="estoque-brand">Estoque</span></a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				{%if user.is_authenticated%}
+				<ul class="nav navbar-nav">
+					<li><a href="{%url 'produtos'%}">Administrar produtos</a></li>
+					<li><a href="{%url 'compra'%}">Comprar produtos</a></li>
+					<li><a href="{%url 'listagem_compras'%}">Lista de compras</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="first-li-navbar-right" class="color-gold">{{user.username}}</li>
+					<li ><a href="{%url 'logout'%}" >Logout <span class="sr-only">(current)</span></a></li>
+				</ul>
+				{%endif%}
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		<!-- END Bootstrap Navbar -->
+		<div class="container">
+		
+		{% include "estoque/includes/mensagens.html" %}
+
+		{% block content %}
+		{% endblock %}
+		
+		</div>
+		<script src="{% static 'estoque/js/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'estoque/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'estoque/js/datatables.min.js' %}"></script>
+		<script>
+			$(document).ready(function(){
+				$('.estoqueDatatable').DataTable( {
+					"language": {
+						"sEmptyTable": "Nenhum registro encontrado",
+						"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+						"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+						"sInfoFiltered": "(Filtrados de _MAX_ registros)",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ resultados por página",
+						"sLoadingRecords": "Carregando...",
+						"sProcessing": "Processando...",
+						"sZeroRecords": "Nenhum registro encontrado",
+						"sSearch": "Pesquisar",
+						"oPaginate": {
+							"sNext": "Próximo",
+							"sPrevious": "Anterior",
+							"sFirst": "Primeiro",
+							"sLast": "Último"
+						},
+						"oAria": {
+							"sSortAscending": ": Ordenar colunas de forma ascendente",
+							"sSortDescending": ": Ordenar colunas de forma descendente"
+						}
+					}
+				} );
+			});
+		</script>
+	</body>
+</html>

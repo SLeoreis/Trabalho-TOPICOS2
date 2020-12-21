@@ -1,0 +1,13 @@
+{% extends "estoque/application.html" %} 
+{% block content %} 
+
+
+<div class="center-div top-to-bottom">
+    <h2>Bem-vindo ao Estoque</h2>
+    <ul>
+        <a href="{%url 'produtos'%}"><li>Administrar produtos</li></a>
+        <a href="{%url 'compra'%}"><li>Comprar levas de produtos</li></a>
+        <a href="{%url 'listagem_compras'%}"><li>Lista de compras</li></a>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "estoque/application.html" %} 
+{% block content %} 
+
+<div class="center-div">
+    <h2>Administrando Produtos</h2>
+    <div class='form-wrapper'>
+        <form action="{%url 'produtos'%}" method="post">
+            {{ form }}
+            {% csrf_token %}
+            <input type="submit" value="Adicionar novo produto" />
+        </form>
+    </div>
+    <a href="{%url 'home'%}"><li>Voltar</li></a>
+</div>
+<h2 class="table-title" >Listagem de Produtos</h2>
+<table class="estoqueDatatable" data-page-length='25'> 
+    <thead>
+        <tr>
+            <th>Nome do Produto</th>
+            <th>Estoque</th>
+            <th>Preço Médio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produto_list %}
+        <tr>
+            <td>{{produto.nome}}</td>
+            <td>
+                {%if produto.estoque%}
+                    {{produto.estoque}}
+                {%else%}
+                    0
+                {%endif%}
+            </td>
+            <td>
+                {%if produto.valor_medio%}
+                    R$ {{produto.valor_medio}}
+                {%else%}
+                    R$ 0
+                {%endif%}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
